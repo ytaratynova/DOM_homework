@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: space-around;
+            row-gap: 60px;
+        }
+
+        .product {
+            font-size: 22px;
+            border: 1px solid black;
+            padding: 10px;
+            background-color: rgb(219, 215, 215);
+        }
+    </style>
+</head>
+<div class="content"></div>
+<script src="data.js"></script>
+<script>
+    const data = JSON.parse(dataInfo)
+
+    const content = document.querySelector('.content')
+
+    data.forEach(element => {
+
+        const product = document.createElement('div')
+        product.classList.add('product')
+
+        const productId = document.createElement('p')
+        productId.classList.add('product__id')
+        productId.textContent = element.id
+
+        const productTitle = document.createElement('p')
+        productTitle.classList.add('product__title')
+        productTitle.textContent = element.title
+
+        const productDesc = document.createElement('p')
+        productDesc.classList.add('product__desc')
+        productDesc.textContent = element.description
+
+        const productPrice = document.createElement('p')
+        productPrice.classList.add('product__price')
+        productPrice.textContent = element.price
+
+        const productDiscount = document.createElement('p')
+        productDiscount.classList.add('product__discount')
+        productDiscount.textContent = element.discountPercentage
+
+        const productRating = document.createElement('p')
+        productRating.classList.add('product__rating')
+        productRating.textContent = element.rating
+
+        const productStock = document.createElement('p')
+        productStock.classList.add('product__stock')
+        productStock.textContent = element.stock
+
+        const productBrand = document.createElement('p')
+        productBrand.classList.add('product__brand')
+        productBrand.textContent = element.brand
+
+        const productCategory = document.createElement('p')
+        productCategory.classList.add('product__category')
+        productCategory.textContent = element.category
+
+        const productImg = document.createElement('img')
+        productImg.classList.add('product__img')
+        productImg.src = element.images
+        productImg.alt = 'photo'
+
+        product.appendChild(productId)
+        product.appendChild(productTitle)
+        product.appendChild(productDesc)
+        product.appendChild(productPrice)
+        product.appendChild(productDiscount)
+        product.appendChild(productRating)
+        product.appendChild(productStock)
+        product.appendChild(productBrand)
+        product.appendChild(productCategory)
+        product.appendChild(productImg)
+
+        content.appendChild(product)
+
+    });
+
+</script>
+
+<body>
+
+</body>
+
+</html>
