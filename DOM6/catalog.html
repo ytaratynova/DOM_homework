@@ -373,6 +373,24 @@
 
         const catalogEl = document.querySelector('.catalog')
 
+
+
+        const cartEl = document.createElement('div')
+        cartEl.classList.add('cart')
+
+        const cartTitleEl = document.createElement('h2')
+        cartTitleEl.classList.add('cart__title')
+        cartTitleEl.textContent = "Cart"
+
+        const cartBoxEL = document.createElement('div')
+        cartBoxEL.classList.add('cart__box')
+
+
+        cartEl.append(cartTitleEl)
+        cartEl.append(cartBoxEL)
+
+
+
         data.forEach(product => {
 
             const catalogItemEl = document.createElement('div')
@@ -402,19 +420,118 @@
             contentPriceEl.classList.add('catalog_content_price')
             contentPriceEl.textContent = `${product.currency === "USD" ? "$" : "руб."}${product.price}`
 
+
+
+            const catalogCartBoxEl = document.createElement('div')
+            catalogCartBoxEl.classList.add('catalog_cart_box')
+
+            const catalogCartEl = document.createElement('a')
+            catalogCartEl.classList.add('catalog_cart')
+            catalogCartEl.href = '#'
+
+            const catalogCartImgEl = document.createElement('img')
+            catalogCartImgEl.classList.add('catalog_cart_img')
+            catalogCartImgEl.src = "img/catalog_cart.png"
+
+            const catalogCartTextEl = document.createElement('p')
+            catalogCartTextEl.classList.add('catalog_cart_text')
+            catalogCartTextEl.textContent = 'Add to Cart'
+
+
+            catalogCartEl.append(catalogCartImgEl)
+            catalogCartEl.append(catalogCartTextEl)
+            catalogCartBoxEl.append(catalogCartEl)
+
+
+
             catalogContentEl.append(contentTitleEl)
             catalogContentEl.append(contentTextEl)
             catalogContentEl.append(contentPriceEl)
 
             catalogLinkEl.append(catalogImgEl)
+
             catalogLinkEl.append(catalogContentEl)
 
             catalogItemEl.append(catalogLinkEl)
+            catalogItemEl.append(catalogCartBoxEl)
+
+
             catalogEl.append(catalogItemEl)
 
 
 
-        });
+
+            catalogCartEl.addEventListener('click', function (e) {
+
+
+                if (!cartEl.classList.contains('buy')) {
+                    cartEl.classList.add('buy')
+                }
+
+
+                const cartProductEl = document.createElement('div')
+                cartProductEl.classList.add('cart__product')
+
+                const cartProductLinkEl = document.createElement('a')
+                cartProductLinkEl.classList.add('cart__product_link')
+                cartProductLinkEl.src = catalogImgEl.src
+
+                const cartProductImgEl = document.createElement('img')
+                cartProductImgEl.classList.add('cart__product_img')
+                cartProductImgEl.src = catalogImgEl.src
+
+
+                const cartProductInfoEl = document.createElement('div')
+                cartProductInfoEl.classList.add('cart__product_info')
+
+
+                const cartProductNameEl = document.createElement('p')
+                cartProductNameEl.classList.add('cart__product_name')
+                cartProductNameEl.textContent = contentTitleEl.textContent
+
+                const cartProductPriceEl = document.createElement('p')
+                cartProductPriceEl.classList.add('cart__product_price')
+                cartProductPriceEl.textContent = `Price: ${contentPriceEl.textContent}`
+
+                const cartProductDeleteEl = document.createElement('button')
+                cartProductDeleteEl.classList.add('cart__product_delete')
+
+
+                const cartProductDeleteImgEl = document.createElement('p')
+                cartProductDeleteImgEl.classList.add('cart__product__delete')
+                cartProductDeleteImgEl.textContent = 'X'
+
+
+                cartProductDeleteEl.append(cartProductDeleteImgEl)
+
+                cartProductInfoEl.append(cartProductNameEl)
+                cartProductInfoEl.append(cartProductPriceEl)
+
+                cartProductEl.append(cartProductImgEl)
+                cartProductEl.append(cartProductInfoEl)
+                cartProductEl.append(cartProductDeleteEl)
+
+                cartBoxEL.append(cartProductEl)
+
+                cartProductDeleteImgEl.addEventListener('click', function (e) {
+                    cartProductEl.remove()
+                    if (!cartBoxEL.hasChildNodes()) {
+                        cartEl.classList.remove('buy')
+                    }
+                })
+
+
+
+            })
+
+        })
+
+
+        const mainEl = document.querySelector('main')
+        const offersEl = document.querySelector('.offers')
+        mainEl.insertBefore(cartEl, offersEl)
+
+
 
     </script>
 

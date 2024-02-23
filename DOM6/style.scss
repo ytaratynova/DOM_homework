@@ -1,8 +1,8 @@
 @import 'var';
 @import 'catalog';
-@import 'product';
-@import 'cart';
-@import 'registration';
+// @import 'product';
+// @import 'cart';
+// @import 'registration';
 
 
 
@@ -593,6 +593,112 @@
 
         }
     }
+}
+
+.title {
+    @extend %container;
+    color: #F16D7F;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: #F8F3F4;
+    ;
+
+
+}
+
+.cart {
+    display: none;
+    @extend %container;
+
+
+    &__title {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__box {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 96px;
+        padding-bottom: 128px;
+        @extend %container;
+        @include flex(column);
+        justify-content: space-between;
+
+    }
+
+
+    &__product {
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.15);
+        margin-bottom: 72px;
+        position: relative;
+        max-width: 600px;
+
+
+        &_img {
+            width: 100%;
+        }
+
+        &_img:hover {
+            border: 1px solid #F16D7F;
+        }
+
+        &_info {
+            display: flex;
+            flex-direction: column;
+            padding-left: 30px;
+            padding-right: 30px;
+            gap: 6px;
+
+        }
+
+        &_name {
+            color: #222;
+            font-family: Lato;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin-bottom: 42px;
+            margin-top: 22px;
+            padding-right: 30px;
+        }
+
+
+        &_input {
+            margin-left: 50px;
+
+        }
+
+        &__delete {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            background: none;
+            border: none;
+            padding: 3px;
+            font-size: 24px;
+
+
+        }
+
+        &__delete:hover .cart__product__delete_svg path {
+            fill: #F16D7F;
+        }
+
+        &_link {
+            display: flex;
+        }
+    }
+}
+
+.buy {
+    display: flex;
 }
 
 
